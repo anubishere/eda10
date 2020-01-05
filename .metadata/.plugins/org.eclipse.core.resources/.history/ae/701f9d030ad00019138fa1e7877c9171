@@ -1,0 +1,12 @@
+
+public class Ostron {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+System.out.println("Ost är gott!");
+/* men det kan ju faktiskt vara äckligt ibland. Framförallt om osten har stått framme för länge
+ *det förstår ju vem som helst va!!!
+ */
+	}
+
+}

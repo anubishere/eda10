@@ -1,0 +1,12 @@
+package inl1;
+
+public class Cryptographer {
+	
+	public Cryptographer(Key key) {
+		
+	}
+	public String encrypt(String text) {
+		
+		return text;
+	}
+}

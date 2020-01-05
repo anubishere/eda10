@@ -1,0 +1,16 @@
+package inl1;
+
+import se.lth.cs.p.inl1.nbr7.Key;
+
+public class Cryptographer {
+	private Key key;
+	
+	
+	public Cryptographer(Key key) {
+		this.key = key;
+	}
+	public String encrypt(String text) {
+		StringBuilder stringB = new StringBuilder();
+		return text;
+	}
+}

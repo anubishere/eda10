@@ -1,0 +1,15 @@
+package testet;
+
+import java.util.Scanner;
+
+public class FERA {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+Scanner scan = new scanner(System.in);
+System.out.print("Rocky");
+
+
+	}
+
+}

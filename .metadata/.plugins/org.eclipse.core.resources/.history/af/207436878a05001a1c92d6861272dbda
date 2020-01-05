@@ -1,0 +1,14 @@
+package inl1;
+
+public class Cryptographer {
+	private Key key;
+	
+	
+	public Cryptographer(Key key) {
+		this.key = key;
+	}
+	public String encrypt(String text) {
+		StringBuilder stringB = new StringBuilder();
+		return text;
+	}
+}

@@ -1,0 +1,22 @@
+package inl1;
+import se.lth.cs.p.inl1.*;
+import se.lth.cs.p.inl1.nbr7.*;
+
+public class Inl1 {
+
+	public static void main(String[] args) {
+		
+		TextWindow klarText = new TextWindow("Klartext");
+		TextWindow myCiphertext = new TextWindow("Min chiffertext");
+		TextWindow correctCipher = new TextWindow("Korrekt chiffertext");
+		
+		TextView klarTexten = new TextView("Klartext: ", 4, 70);
+		
+		
+		for(int i = 0; i < 5; i++) {
+			
+		}
+
+	}
+
+}

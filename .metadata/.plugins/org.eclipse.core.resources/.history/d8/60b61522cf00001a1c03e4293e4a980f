@@ -1,0 +1,25 @@
+package inl1;
+
+import java.util.Scanner;
+
+public class Ovnin {
+
+	    public static void main(String[] args) {
+	    	int calcNbrDays;
+	        Scanner scan = new Scanner(System.in);
+	        System.out.println("Hur mycket pengar vill du ha?");
+	        int wantedMoney = scan.nextInt();
+	        int nbrDays = calcNbrDays(wantedMoney);
+	        System.out.println(nbrDays);
+	    }
+
+		private static int calcNbrDays(int wantedMoney) {
+			return 0;
+		}
+	    
+	    
+	
+
+	}
+
+

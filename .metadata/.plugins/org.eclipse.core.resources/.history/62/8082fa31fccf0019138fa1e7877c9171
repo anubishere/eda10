@@ -1,0 +1,23 @@
+package testet;
+
+import java.util.Scanner;
+
+public class Squaretest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner (System.in);
+int a, b, c, d, e;
+a = scan.nextInt(1);
+b = scan.nextInt(2);
+c = scan.nextInt(4);
+d = scan.nextInt(8);
+e= c + d - (a + b);
+c = c + 2;
+a = -(e * 2 + c) / 4 * b;
+System.out.print(e);
+System.out.print(c);
+System.out.print(a);
+	}
+
+}

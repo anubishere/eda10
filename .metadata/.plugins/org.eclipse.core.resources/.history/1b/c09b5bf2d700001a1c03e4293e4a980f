@@ -1,0 +1,32 @@
+package inl1;
+
+import java.util.Scanner;
+
+public class Ovnin {
+
+	public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int wantedMoney = scan.nextInt();
+        int nbrDays = calcNbrDays(wantedMoney);
+        System.out.println(nbrDays);
+      }
+    
+    public static int calcNbrDays(int wantedSum){
+        int totalSum = 0;
+        int currentPay = 1;
+        int count = 1;
+        
+    	while (totalSum != wantedSum) {
+    	    currentPay = currentPay * 2;
+    	    totalSum+= currentPay;
+    	    count++;
+    	   System.out.println(totalSum);   	
+    	   }
+    return count;
+    }
+    }
+
+
+
+
+

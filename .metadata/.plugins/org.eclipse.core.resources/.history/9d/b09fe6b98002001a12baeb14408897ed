@@ -1,0 +1,33 @@
+package inl1;
+
+import java.util.Scanner;
+
+public class Ovnin {
+
+	public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Hur mycket pengar vill du ha?");
+        int wantedMoney = scan.nextInt();
+        int nbrDays = calcNbrDays(wantedMoney); // nbrDays får värdet av metoden calcNbrDays
+        System.out.println(nbrDays);
+      }
+    
+    public static int calcNbrDays(int wantedSum){
+        int totalSum = 0; // variabel som håller koll på det totala värdet
+        int currentPay = 1; // den nuvarande lönen, börjar på 1
+        int nbrDays = 1; // börjar på dag 1 med lönen 1
+        
+    	while (totalSum < wantedSum) {
+    	    currentPay = currentPay * 2; // den tillfälliga lönen är 2 första loopen, därefter blir den 4 osv.
+    	    totalSum+= currentPay; // summan blir 0 + 1, därefter 1 + 2 osv.
+    	    nbrDays++; // dagarna räknas
+    	   //System.out.println(totalSum);   	
+    	   }
+    return nbrDays;
+    }
+    }
+
+
+
+
+

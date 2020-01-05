@@ -1,0 +1,28 @@
+package inl1;
+
+import java.util.Scanner;
+
+public class Ovnin {
+
+	public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int wantedMoney = scan.nextInt();
+        int nbrDays = calcNbrDays(wantedMoney);
+        System.out.println(nbrDays);
+    }
+    
+    public static int calcNbrDays(int wantedSum) {
+    	int sum = 1, dailySum=1;
+			int dagar = 0;
+			
+			for(int i = 1; i < sum; i++){
+			    sum += Math.pow(2,i);
+			    dagar++;
+			}
+			return dagar;
+    }
+}
+
+
+
+

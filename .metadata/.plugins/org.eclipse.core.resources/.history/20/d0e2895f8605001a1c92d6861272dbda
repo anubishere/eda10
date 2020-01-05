@@ -1,0 +1,28 @@
+package inl1;
+import se.lth.cs.p.inl1.*;
+import se.lth.cs.p.inl1.nbr7.*;
+import se.lth.cs.p.inl1.TextView;
+public class Inl1 {
+
+	public static void main(String[] args) {
+		
+		TextWindow textWindow = new TextWindow("Chiffrering");
+		
+		TestCase testCiph = new TestCase();
+		
+		TextView klarTexten = new TextView("Klartext: ", 10, 90);
+		TextView myCiphertext = new TextView("Min chiffrering: ", 10, 90);
+		TextView correctCipher = new TextView("Korrekt chiffrering: ", 10, 90);
+		
+		textWindow.addView(klarTexten);
+		textWindow.addView(myCiphertext);
+		textWindow.addView(correctCipher);
+		for(int i = 0; i < 5; i++) {
+			klarTexten.displayText(testCiph.getClearText(i));
+			myCiphertext.displayText(testCiph.getCryptoText(i));
+			correctCipher.displayText(" ");
+		}
+
+	}
+
+}

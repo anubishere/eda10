@@ -1,0 +1,19 @@
+package testet;
+
+import java.util.Scanner;
+
+public class Squaretest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Mata in två heltal");
+		int nbr1, nbr2, nbr3;
+		Scanner scan = new Scanner(System.in);
+		nbr1 = scan.nextInt();
+		nbr2 = scan.nextInt();
+		System.out.print("Trycker du enter nu blir det en summa av talen du valde");
+		nbr3 = nbr1 + nbr2;
+		System.out.println(nbr3);
+	}
+
+}

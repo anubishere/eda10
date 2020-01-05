@@ -1,0 +1,12 @@
+package testet;
+
+public class Grut {
+
+	public static void main(String[] args) {
+		SimpleWindow w = new SimpleWindow(400, 400, "Grut");
+		
+		// TODO Auto-generated method stub
+
+	}
+
+}

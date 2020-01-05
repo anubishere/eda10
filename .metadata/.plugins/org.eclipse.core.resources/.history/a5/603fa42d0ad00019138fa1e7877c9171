@@ -1,0 +1,12 @@
+
+public class Ostron {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+System.out.println("Ost är gott!");
+	}
+/* tjena förhelvete */
+	
+System.out.print("Hej");
+	
+}

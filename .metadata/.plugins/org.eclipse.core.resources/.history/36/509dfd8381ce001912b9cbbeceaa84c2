@@ -1,0 +1,19 @@
+package testet;
+
+import java.util.Scanner;
+
+public class FERA {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+int total =20;
+while (total >0);{
+	System.out.println("4");
+	nbr = scan.nextint();
+	
+}
+
+
+	}
+
+}

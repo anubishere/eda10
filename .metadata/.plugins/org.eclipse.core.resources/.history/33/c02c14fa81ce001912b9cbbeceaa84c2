@@ -1,0 +1,20 @@
+package testet;
+
+import java.util.Scanner;
+
+public class SquareTest {
+	public static void main(string[] args) {
+		SimpleWindow w = new SimpleWindow (400, 400,
+				"squaretest");
+		Square sq = new Square(20, 10, 40);
+		sq.draw(w);
+		sq.move(10,30);
+		sq.draw(w);
+		
+	
+}
+
+
+	}
+
+}

@@ -1,0 +1,10 @@
+
+public class Ostron {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner = new scan(system.in);
+System.out.println (Ost är gott!);
+	}
+
+}

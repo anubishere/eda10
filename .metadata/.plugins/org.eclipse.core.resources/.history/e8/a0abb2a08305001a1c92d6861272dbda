@@ -1,0 +1,22 @@
+package inl1;
+import se.lth.cs.p.inl1.*;
+import se.lth.cs.p.inl1.nbr7.*;
+
+public class Inl1 {
+
+	public static void main(String[] args) {
+		
+		TextWindow w1 = new TextWindow("Klartext");
+		TextWindow w2 = new TextWindow("Min chiffertext");
+		TextWindow w3 = new TextWindow("Korrekt chiffertext");
+		
+		Cryptographer krypto = new Cryptographer(3);
+		
+		
+		for(int i = 0; i < 5; i++) {
+			String C = line
+		}
+
+	}
+
+}

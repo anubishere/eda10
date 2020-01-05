@@ -1,0 +1,28 @@
+package testet;
+
+import java.util.Scanner;
+
+public class Squaretest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+double x, coeff, p;
+int n;
+Scanner scan = new Scanner (System.in);
+x = scan.nextDouble();
+p = 1;
+n = scan.nextInt();
+for (int k = 1; k <= n; k = k + 1) {
+	coeff = scan.nextDouble();
+	p = p * x + coeff;
+}
+System.out.println(p);
+
+	
+}
+
+
+}
+
+
+

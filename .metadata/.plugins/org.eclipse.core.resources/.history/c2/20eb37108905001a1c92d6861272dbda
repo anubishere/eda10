@@ -1,0 +1,14 @@
+package inl1;
+
+public class Key {
+	
+public Key(){	
+}
+
+public char getLetter(int index){
+index = letter - 'A';
+return index;
+}
+}
+
+

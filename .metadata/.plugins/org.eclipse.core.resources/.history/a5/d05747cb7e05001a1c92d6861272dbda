@@ -1,0 +1,38 @@
+package inl1;
+import se.lth.cs.window.SimpleWindow;
+import se.lth.cs.p.ovn.turtle.Turtle;
+public class Turtleas {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		SimpleWindow w = new SimpleWindow(500,500,"w");
+		Turtle T = new Turtle (w, 100, 100);
+		T.penDown();
+		T.left(120);
+		T.forward(100);
+		T.left(120);
+		T.forward(100);
+		T.left(120);
+		T.forward(100);
+		T.penUp();
+		T.right(90);
+		T.forward(100);
+		T.penDown();
+		T.right(30);
+		T.forward(100);
+		T.right(120);
+		T.forward(100);
+		T.right(120);
+		T.forward(100);
+		
+		
+		
+		
+		
+	
+
+
+	}
+
+}

@@ -1,0 +1,13 @@
+package testet;
+
+public class FERA {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+int nbr;
+nbr = 5;
+int total = nbr + 20;
+
+	}
+
+}

@@ -1,0 +1,29 @@
+package inl1;
+
+import java.util.Scanner;
+
+public class Tågtidtstabell {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);
+System.out.println("Vilken tid går ditt tåg? Skriv först timme sedan minuter");
+int TAvgång;
+TAvgång = scan.nextInt();
+
+System.out.println("Hur lång tid tar resan i timmar + minuter?");
+
+int resetidH;
+resetidH = scan.nextInt();
+
+int ankomsttid;
+ankomsttid = TAvgång + resetidH;
+if (ankomsttid > 2400) {
+	ankomsttid = 0 + ;}
+
+System.out.println("Din ankomsttid är " + ankomsttid);
+}
+
+
+
+}

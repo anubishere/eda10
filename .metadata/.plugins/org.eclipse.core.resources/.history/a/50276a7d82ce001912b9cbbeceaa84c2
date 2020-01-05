@@ -1,0 +1,12 @@
+package testet;
+
+public class Ferfaf {
+
+	public static void main(String[] args) {
+		SimpleWindow w = new SimpleWindow(400, 400, "Ferfaf");
+		
+		// TODO Auto-generated method stub
+
+	}
+
+}

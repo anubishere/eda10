@@ -1,0 +1,11 @@
+package inl1;
+
+public class calcNbrDays{
+	int wantedSum;
+
+	int calcNbrDay(int wantedSum) {
+    	this.wantedSum = wantedSum;
+    	
+    
+}
+}

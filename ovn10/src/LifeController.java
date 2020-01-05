@@ -1,0 +1,40 @@
+public class LifeController {
+
+	public static void main(String[] args) {
+
+		LifeBoard board = new LifeBoard(9, 9);
+		LifeView window = new LifeView(board);
+
+		window.drawBoard();
+
+		// kommer bestämma vad som händer vid musklick
+		
+
+		Life life = new Life(board);
+
+		while (true) {
+			
+			int mouseClick = window.getCommand();
+			
+			//individer dör/börjar leva vid klick
+			
+			if (mouseClick == 1) {
+				life.flip(window.getRow(), window.getCol());
+				window.update();
+			}
+			//nästa generation vid klick
+			else if (mouseClick == 2) {
+				life.newGeneration();
+				board.increaseGeneration();
+				window.update();
+			} // stänger rutan
+			else if (mouseClick == 3) {
+				System.exit(0);
+			}
+			
+		}
+		
+
+	}
+
+}

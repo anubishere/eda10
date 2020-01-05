@@ -1,0 +1,25 @@
+package testet;
+
+import java.util.Scanner;
+
+public class Squaretest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+System.out.print("Mata in två heltal ");
+int a, b;
+Scanner scan = new Scanner(System.in);
+a = scan.nextInt();
+b = scan.nextInt();
+if (a > b) {
+	System.out.println(a);
+} else {
+	System.out.println(2 * b);
+	
+}
+
+
+}
+	}
+
+

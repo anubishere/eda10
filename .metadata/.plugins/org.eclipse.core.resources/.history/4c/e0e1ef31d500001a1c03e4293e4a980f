@@ -1,0 +1,30 @@
+package inl1;
+
+import java.util.Scanner;
+
+public class Ovnin {
+
+	public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int wantedMoney = scan.nextInt();
+        int nbrDays = 1; //calcNbrDays(wantedMoney);
+        System.out.println(nbrDays);
+   int sumOfSalary = 0;
+    	int addedSalary = 1;
+    	int count = 0;
+    	while(sumOfSalary < wantedMoney) {
+    		nbrDays++;
+    		sumOfSalary += addedSalary;
+    		addedSalary++;
+    		System.out.println(nbrDays - 1); 
+    		}
+    
+    //public static int calcNbrDays(int wantedSum) {
+    	
+			}
+    }
+
+
+
+
+

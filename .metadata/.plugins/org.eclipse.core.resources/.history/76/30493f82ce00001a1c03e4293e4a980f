@@ -1,0 +1,9 @@
+package inl1;
+
+public class calcNbrDays {
+	int wantedSum;
+	public public int calcNbrDays(int wantedSum) {
+    	this.wantedSum = wantedSum;
+    	
+    }
+}
