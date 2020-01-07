@@ -1,0 +1,20 @@
+import java.awt.Color;
+
+public class test {
+
+	public static void main(String[] args) {
+		
+		
+		int val = 612;
+		int res = 9;
+		
+		int calc;
+		int diff =  val % res;
+		if(diff != 0){
+			calc = val + (res - diff);
+		} else {calc = val;}
+		calc = calc/res;
+		
+		System.out.println(calc);
+	}
+}

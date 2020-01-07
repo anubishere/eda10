@@ -1,84 +1,111 @@
 import java.awt.Color;
 
 public class Generator {
-	private Color[] colorScale;
-	Boolean Colors = true;
-	Boolean bw = false;
-	
-	
+
+
 	public Generator() {
-		this.colorScale = new Color[256];
-		int r = 0;
-		int g = 0;
-		int b = 255;
-		int i = 0;
-		while(r < 255) {
-			this.colorScale[i] = new Color(r, g, b);
-			r+=3;
-			i++;
-		}
-		while (b > 0) {
-			this.colorScale[i] = new Color(r, g, b);
-			b -= 3;
-			i++;
-		}
-		while(g < 81) {
-			this.colorScale[i] = new Color(r, g, b);
-			g += 1;
-			i++;
-		}
 		
+		
+		
+		
+		
+
 	}
 	public void render(MandelbrotGUI gui) {
-		boolean colorMode = gui.getMode() == MandelbrotGUI.MODE_COLOR;
+		
+		/* variablar fÃ¶r att fÃ¶rkorta den "riktiga" koden */
+		double minRe = gui.getMinimumReal(), maxRe = gui.getMaximumReal();
+		double minIm = gui.getMinimumImag(), maxIm = gui.getMaximumImag();
+		int height = gui.getHeight(), width = gui.getWidth();
+		int reso = gui.getResolution();
+		boolean colormode = false;
+		
 		gui.disableInput();
 		
 		
-		// matrisen med komplexa tal
-		Complex complex[][] = mesh(gui.getMinimumReal(), gui.getMaximumReal(),
-									gui.getMinimumImag(), gui.getMaximumImag(),
-									gui.getWidth(), gui.getHeight());
-		//matrisen som renderar bilden
-		Color[][] picture = new Color[gui.getHeight()][gui.getWidth()];
+		int pixels = 1;
+		if      (reso == MandelbrotGUI.RESOLUTION_VERY_HIGH) pixels=1;
+        else if (reso == MandelbrotGUI.RESOLUTION_HIGH)      pixels=3;
+        else if (reso == MandelbrotGUI.RESOLUTION_MEDIUM)    pixels=5;
+        else if (reso == MandelbrotGUI.RESOLUTION_LOW)       pixels=7;
+        else if (reso == MandelbrotGUI.RESOLUTION_VERY_LOW)  pixels=9;
+		
+		//komplexa talplanet
+		Complex complex[][] = mesh(gui.getMinimumReal(), gui.getMaximumReal(), gui.getMinimumImag(), gui.getMaximumImag(), gui.getWidth(), gui.getHeight());
 		
 		
-		// går genom matrisen
-		for(int i = 0; i<gui.getHeight(); i++) {
-			for(int j = 0; j < gui.getWidth(); j++) {
-				Complex complexNbr = complex[i][j];
-				
-				/* om absolutbeloppet av det komplexa numret
-					gör färgen på picture[i][j] till vit, annars
-					välj en färg för varje kvadrant.
-				 */
-				
-				if(complexNbr.getAbs2() > 1) {
-					picture[i][j] = Color.WHITE;
-				} else if(complexNbr.getAbs2() < 1) {
-					picture[i][j] = Color.BLUE;
-				}
-				gui.putData(picture, gui.getWidth(), gui.getHeight());
 		
-				gui.enableInput();		
-					
-				
-			}
+		for(int i = 0; i < 100; i++) {
+		Complex z = new Complex (0,0);
+		Complex c = new Complex (-0.4, 0.4);
+		
+		z.mul(z);
+		z.add(c);
+		double mandel = z.getAbs2();
 		}
 		
-	}
-	private Complex[][] mesh(double minRe, double maxRe,
-							 double minIm, double maxIm,
-							 int width, int heigth){
-		Complex[][] complex = new Complex[heigth][width];
-		for(int i = 0; i < heigth; i++) {
-			for(int j = 0; j < width; j++) {
-				complex[0][0] = new Complex(minRe, maxIm);
-				complex[heigth -1][width - 1] = new Complex(maxRe, minIm);
-				
-				
-			}
-		}
-		return complex;
+		
 	
+		boolean withColor;
+		switch(gui.getMode()) {
+		case MandelbrotGUI.MODE_BW:
+			withColor = false;
+			break;
+			
+		case MandelbrotGUI.MODE_COLOR:
+			withColor = true;
+			break;
+		
+		default:
+			withColor = false;
+		}
+			//skapar fÃ¤rgmatrisen
+		Color[][] picture = new Color[height][width];
+		
+		//iterera genom bildmatrisen
+		for(int row = 0; row < height; row++) {
+			for(int col = 0; col < width; col++) {
+				if(complex[row][col].getIm() > 0 && complex[row][col].getRe() > 0) {
+					picture[row][col] = Color.BLUE;
+					
+				} else if(complex[row][col].getIm() > 0 && complex[row][col].getRe() < 0) {
+					picture[row][col] = Color.ORANGE;
+					
+				} else if(complex[row][col].getIm() < 0 && complex[row][col].getRe() < 0) {
+					picture[row][col] = Color.GREEN;
+					
+				} else if(complex[row][col].getIm() < 0 && complex[row][col].getRe() > 0) {
+					picture [row][col] = Color.PINK;
+				}
+				
+			}
+			
+			
+			
+			
+		}
+		gui.putData(picture, reso, reso);
+		
+		gui.enableInput();
 	}
+private Complex[][] mesh(double minRe, double maxRe, double minIm, double maxIm, int width, int height){
+	
+	Complex[][] pixelArr = new Complex [height][width];
+	pixelArr[0][0] = new Complex(minRe, maxIm);
+	pixelArr[height - 1][width - 1] = new Complex(maxRe, minIm);
+	
+	for(int i = 0; i < height; i++) {
+		for(int j = 0; j < width; j++) {
+			//avstÃ¥nd i procent till vÃ¤nster hÃ¶rn fÃ¶r pixeln
+			double widthPercent = j / (double) width;
+			double re = minRe + widthPercent * (maxRe - minRe);
+			double heightPercent = j / (double) height;
+			double im = maxIm - heightPercent *(maxIm - minIm);
+			pixelArr[i][j] = new Complex(re, im);
+			
+			
+		}
+	}
+	return pixelArr;
+}
 }

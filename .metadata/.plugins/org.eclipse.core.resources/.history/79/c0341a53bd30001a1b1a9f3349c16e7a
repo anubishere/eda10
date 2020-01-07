@@ -1,0 +1,59 @@
+import java.awt.Color;
+
+public class Generator {
+	
+
+
+	public Generator() {
+		
+		
+		
+		
+		
+
+	}
+	public void render(MandelbrotGUI gui) {
+		gui.disableInput();
+		//komplexa talplanet
+		Complex complex[][] = mesh(gui.getMinimumReal(), gui.getMaximumReal(), gui.getMinimumImag(), gui.getMaximumImag(), gui.getWidth(), gui.getHeight());
+		//färgmatrisen
+		Color[][] picture = new Color[gui.getHeight()][gui.getWidth()];
+		
+		for(int row = 0; row < picture.length; row++) {
+			for(int col = 0; col < picture.length; col++) {
+				
+				if(complex[row][col].getAbs2() > 1) {
+					picture[row][col] = Color.WHITE;
+					//om re och im är i första kvadr,  röd
+				} else if(complex[row][col].getRe() > 0 && complex[row][col].getIm() > 0) {
+					picture[row][col] = Color.RED;
+					// 2a kvadranten, blå
+				} else if(complex[row][col].getRe() < 0 && complex[row][col].getIm() > 0) {
+					picture[row][col] = Color.BLUE;
+				} else if(complex[row][col].getRe() < 0 && complex[row][col].getIm() < 0) {
+					picture[row][col] = Color.pink;
+				} else if(complex[row][col].getRe() > 0 && complex[row][col].getIm() < 0) {
+					picture[row][col] = Color.green;
+				}
+			}
+			
+			
+		}
+		gui.putData(picture, gui.getWidth(), gui.getHeight());
+		
+		gui.enableInput();
+	}
+private Complex[][] mesh(double minRe, double maxRe, double minIm, double maxIm, int width, int height){
+	
+	Complex[][] pixelArr = new Complex [height][width];
+	pixelArr[0][0] = new Complex(minRe, maxIm);
+	pixelArr[height - 1][width - 1] = new Complex(maxRe, minIm);
+	
+	for(int i = 0; i < height; i++) {
+		for(int j = 0; j < width; j++) {
+			
+		}
+	}
+	return pixelArr;
+}
+}

@@ -1,0 +1,58 @@
+
+public class test {
+
+	public static void main(String[] args) {
+		MandelbrotGUI gui = new MandelbrotGUI();
+		Generator g = new Generator();
+		int n = 0;
+		Complex z = new Complex(0, 0);
+		Complex c = new Complex(-0.4, 0.4);
+		boolean ture = true;
+		while(ture) {
+		
+		
+		z.mul(z);
+		z.add(c);
+		n++;
+		
+		if(z.getIm() > 0 && z.getRe() > 0) {
+		System.out.println(z.getAbs2());
+		System.out.println(n);
+		}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		while(true) {
+			switch(gui.getCommand()) {
+			
+			case MandelbrotGUI.RENDER:
+				g.render(gui);
+				break;
+				
+			case MandelbrotGUI.RESET:
+				gui.resetPlane();
+				gui.clearPlane();
+				System.out.println("Du återställde nu");
+				break;
+				
+			case MandelbrotGUI.QUIT:
+				System.exit(0);
+
+				
+			case MandelbrotGUI.ZOOM:
+				
+				
+			}
+		}
+
+	
+	}
+
+}
