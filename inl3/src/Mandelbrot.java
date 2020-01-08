@@ -1,43 +1,46 @@
 
+
 public class Mandelbrot {
 
 	public static void main(String[] args) {
-			MandelbrotGUI gui = new MandelbrotGUI(500);
+			MandelbrotGUI gui = new MandelbrotGUI();
 			Generator g = new Generator();
-			Complex z = new Complex(0, 0);
-			Complex c = new Complex (-0.4, 0.4);
 			
-			//mandelbrot här nedan
-			for(int i = 0; i < 100; i++) {
-			z.mul(z);
-			z.add(c);
-			if (z.getAbs2() > 2) break;
-			System.out.println(z.getAbs2());
-			}
+
 			
+			boolean pictureIsRendered = false;
+	
+
 		while(true) {
 			switch(gui.getCommand()) {
 			
 			case MandelbrotGUI.RENDER:
-			g.render(gui);
+				pictureIsRendered = true;
+				g.render(gui);
+				
+			
 			break;
 			
 			case MandelbrotGUI.RESET:
-				
+				pictureIsRendered = false;
 				gui.resetPlane();
 				gui.clearPlane();
-				System.out.println("Mandelbrot återställdes");
 				break;
 				
 			case MandelbrotGUI.QUIT:
 				System.exit(0);
-				System.out.println("Du avslutade programmet");
 				break;
 
 				
 			case MandelbrotGUI.ZOOM:
+				if(pictureIsRendered) g.render(gui);
+				break;
+				
+				
 				
 			}
+			System.out.println(pictureIsRendered);
+			
 		}
 
 	}

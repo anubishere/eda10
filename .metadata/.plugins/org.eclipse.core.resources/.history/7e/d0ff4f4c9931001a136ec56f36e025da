@@ -1,0 +1,21 @@
+
+public class testComplex {
+
+	public static void main(String[] args) {
+		Complex z = new Complex(0.0, 0.0);
+		Complex c = new Complex (1.0, 1.0);
+		
+		
+		z.add(c);
+		if(z.getRe() == 1.0 && z.getIm() == 1.0) {
+		System.out.println("Adderingsmetoden fungerar, det nya komplexa talet är: " + z);
+		}
+		System.out.println();
+		
+		z.mul(c);
+		if(z.getRe() == 0.0 && z.getIm() == 2.0) {
+		System.out.println("Svaret ska bli 2i (1+ i + i - 1)" + z);
+		}
+	}
+
+}

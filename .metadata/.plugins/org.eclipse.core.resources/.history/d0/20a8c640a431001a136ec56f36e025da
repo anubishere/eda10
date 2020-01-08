@@ -1,0 +1,82 @@
+import java.awt.Color;
+
+public class Generator {
+
+
+	public Generator() {
+		
+		
+		
+		
+		
+
+	}
+	public void render(MandelbrotGUI gui) {
+		int height = gui.getHeight();
+		int width = gui.getWidth();
+		int resolution = gui.getResolution();
+		
+		gui.disableInput();
+		
+		Complex[][] complex = mesh(gui.getMinimumReal(), gui.getMaximumReal(), gui.getMinimumImag(),
+												gui.getMaximumImag(), width, height);
+		
+		Color[][] picture = new Color[height][width];
+		
+		for (int i = 0; i < picture.length; i++) {
+			for (int j = 0; j < picture[0].length; j++) {
+				if(mandelbrot(complex[i][j])) {
+					picture[i][j] = Color.black;
+				} else {
+					picture[i][j] = Color.white;
+				}
+			}
+		}
+		
+		gui.putData(picture, 1, 1);
+		gui.enableInput();
+		
+	}
+	
+	
+	
+	
+private Complex[][] mesh(double minRe, double maxRe, double minIm, double maxIm, int width, int height){
+	
+	Complex[][] matrix = new Complex[height][width];
+	
+	
+	// re-axels längd(abs) / fönstrets bredd ger
+	double reStepSize = Math.abs(maxRe - minRe) / width;
+	
+	// samma här fast im
+	double imStepSize = Math.abs(maxIm - minIm) / height;
+	
+	//fyller matrisen med alla koordinater av komplexa tal med hänseende på stepsize
+	for (int i = 0; i < matrix.length; i++) {
+		for(int j = 0; j < matrix[0].length; j++) {
+			matrix[i][j] = new Complex(minRe + (reStepSize * j), maxIm - (i * imStepSize));
+		}
+		
+	}
+	return matrix;
+
+}
+
+private boolean mandelbrot(Complex c) {
+	Complex z = new Complex(0.0 , 0.0);
+	int iterations = 0;
+	
+	
+	/* Sålänge iterationerna < 200 och kompleca talets absbelopp också, beräkna mandelbrotföljden. Returnera true om iterations = 200 */
+	while(iterations < 200 && z.getAbs2() <= 200) {
+		z.mul(z);
+		z.add(c);
+		iterations++;
+	}
+	return iterations == 200;
+	
+}
+
+
+}

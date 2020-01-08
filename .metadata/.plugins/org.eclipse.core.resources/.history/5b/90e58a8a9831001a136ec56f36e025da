@@ -1,0 +1,12 @@
+
+public class testComplex {
+
+	public static void main(String[] args) {
+		Complex z = new Complex(0.0, 0.0);
+		Complex c = new Complex (1.0, 1.0);
+		
+		z.add(c);
+		System.out.println(z);
+	}
+
+}

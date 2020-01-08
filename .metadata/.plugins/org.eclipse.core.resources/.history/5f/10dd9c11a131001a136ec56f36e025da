@@ -1,0 +1,36 @@
+
+public class Mandelbrot {
+
+	public static void main(String[] args) {
+			MandelbrotGUI gui = new MandelbrotGUI();
+			Generator g = new Generator();
+	
+
+		while(true) {
+			switch(gui.getCommand()) {
+			
+			case MandelbrotGUI.RENDER:
+			g.render(gui);
+			break;
+			
+			case MandelbrotGUI.RESET:
+				
+				gui.resetPlane();
+				gui.clearPlane();
+				System.out.println("Mandelbrot återställdes");
+				break;
+				
+			case MandelbrotGUI.QUIT:
+				System.exit(0);
+				System.out.println("Du avslutade programmet");
+				break;
+
+				
+			case MandelbrotGUI.ZOOM:
+				
+			}
+		}
+
+	}
+
+}

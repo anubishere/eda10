@@ -1,0 +1,19 @@
+
+public class testComplex {
+
+	public static void main(String[] args) {
+		Complex z = new Complex(0.0, 0.0);
+		Complex c = new Complex (1.0, 1.0);
+		
+		
+		z.add(c);
+		if(z.getRe() == 1.0 && z.getIm() == 1.0) {
+		System.out.println("Adderingsmetoden fungerar, det nya komplexa talet är: " + z);
+		}
+		
+		
+		z.mul(c);
+		System.out.println(z);
+	}
+
+}

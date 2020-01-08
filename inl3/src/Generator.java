@@ -1,111 +1,120 @@
 import java.awt.Color;
 
 public class Generator {
-
+	Color[][] neuances = new Color[255][5];
+	Color currentCol;
 
 	public Generator() {
-		
-		
-		
-		
-		
+
+
+
+
 
 	}
 	public void render(MandelbrotGUI gui) {
+		int height = gui.getHeight();
+		int width = gui.getWidth();
 		
-		/* variablar för att förkorta den "riktiga" koden */
-		double minRe = gui.getMinimumReal(), maxRe = gui.getMaximumReal();
-		double minIm = gui.getMinimumImag(), maxIm = gui.getMaximumImag();
-		int height = gui.getHeight(), width = gui.getWidth();
-		int reso = gui.getResolution();
-		boolean colormode = false;
+		//denna variabel utnyttjas för att få fram rätt förhållande i matriserna beroende på upplösning
+		int resolution = resCalc(gui.getResolution());
+
 		
+		
+		
+		/* tex medium, dvs rendering av var 5e pixel i iterationen. Eftersom första index (1) ska renderas
+		   så behöver loopen börja 4 steg bak. För medium: - 3 och börja rendera på index 1
+
+		   MEDIUM
+		   [-3][-2][-1][0][X][][][][][X][][]
+		
+		 */
+		int indexStartResolution = -((resolution / 2) +1);
+
+
+
 		gui.disableInput();
-		
-		
-		int pixels = 1;
-		if      (reso == MandelbrotGUI.RESOLUTION_VERY_HIGH) pixels=1;
-        else if (reso == MandelbrotGUI.RESOLUTION_HIGH)      pixels=3;
-        else if (reso == MandelbrotGUI.RESOLUTION_MEDIUM)    pixels=5;
-        else if (reso == MandelbrotGUI.RESOLUTION_LOW)       pixels=7;
-        else if (reso == MandelbrotGUI.RESOLUTION_VERY_LOW)  pixels=9;
-		
-		//komplexa talplanet
-		Complex complex[][] = mesh(gui.getMinimumReal(), gui.getMaximumReal(), gui.getMinimumImag(), gui.getMaximumImag(), gui.getWidth(), gui.getHeight());
-		
-		
-		
-		for(int i = 0; i < 100; i++) {
-		Complex z = new Complex (0,0);
-		Complex c = new Complex (-0.4, 0.4);
-		
-		z.mul(z);
-		z.add(c);
-		double mandel = z.getAbs2();
-		}
-		
-		
-	
-		boolean withColor;
-		switch(gui.getMode()) {
-		case MandelbrotGUI.MODE_BW:
-			withColor = false;
-			break;
-			
-		case MandelbrotGUI.MODE_COLOR:
-			withColor = true;
-			break;
-		
-		default:
-			withColor = false;
-		}
-			//skapar färgmatrisen
-		Color[][] picture = new Color[height][width];
-		
-		//iterera genom bildmatrisen
-		for(int row = 0; row < height; row++) {
-			for(int col = 0; col < width; col++) {
-				if(complex[row][col].getIm() > 0 && complex[row][col].getRe() > 0) {
-					picture[row][col] = Color.BLUE;
-					
-				} else if(complex[row][col].getIm() > 0 && complex[row][col].getRe() < 0) {
-					picture[row][col] = Color.ORANGE;
-					
-				} else if(complex[row][col].getIm() < 0 && complex[row][col].getRe() < 0) {
-					picture[row][col] = Color.GREEN;
-					
-				} else if(complex[row][col].getIm() < 0 && complex[row][col].getRe() > 0) {
-					picture [row][col] = Color.PINK;
+
+		Complex[][] complex = mesh(gui.getMinimumReal(), gui.getMaximumReal(), gui.getMinimumImag(),
+				gui.getMaximumImag(), width, height);
+
+		Color[][] picture = new Color[height / resolution][width / resolution];
+		// itererar hela längden, inklusive sista
+		for (int i = 1; i <= picture.length; i++) {
+			for (int j = 1; j <= picture[0].length; j++) {
+				Complex z = complex[indexStartResolution + i * resolution][indexStartResolution + j * resolution];
+				if(mandelbrot(z)) {
+					picture[i - 1][j - 1] = Color.black;
+				} else {
+					picture[i - 1][j - 1] = Color.white;
 				}
-				
 			}
-			
-			
-			
-			
 		}
-		gui.putData(picture, reso, reso);
-		
+
+		gui.putData(picture, resolution, resolution);
 		gui.enableInput();
+
 	}
-private Complex[][] mesh(double minRe, double maxRe, double minIm, double maxIm, int width, int height){
-	
-	Complex[][] pixelArr = new Complex [height][width];
-	pixelArr[0][0] = new Complex(minRe, maxIm);
-	pixelArr[height - 1][width - 1] = new Complex(maxRe, minIm);
-	
-	for(int i = 0; i < height; i++) {
-		for(int j = 0; j < width; j++) {
-			//avstånd i procent till vänster hörn för pixeln
-			double widthPercent = j / (double) width;
-			double re = minRe + widthPercent * (maxRe - minRe);
-			double heightPercent = j / (double) height;
-			double im = maxIm - heightPercent *(maxIm - minIm);
-			pixelArr[i][j] = new Complex(re, im);
-			
-			
+
+
+
+
+	private Complex[][] mesh(double minRe, double maxRe, double minIm, double maxIm, int width, int height){
+
+		Complex[][] matrix = new Complex[height][width];
+
+
+		// re-axels längd(abs) / fönstrets bredd ger
+		double reStepSize = Math.abs(maxRe - minRe) / width;
+
+		// samma här fast im
+		double imStepSize = Math.abs(maxIm - minIm) / height;
+
+		//fyller matrisen med alla koordinater av komplexa tal med hänseende på stepsize och antal rader/kolumner
+		for (int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				matrix[i][j] = new Complex(minRe + (reStepSize * j), maxIm - (i * imStepSize));
+			}
+
+		}
+		return matrix;
+
+	}
+	/* metod för att räkna ut mandelbrot för komplext tal */
+	private boolean mandelbrot(Complex c) {
+		Complex z = new Complex(0.0 , 0.0);
+		int iterations = 0;
+
+
+		/* Sålänge iterationerna < 200 och kompleca talets absbelopp också, beräkna mandelbrotföljden. Returnera true om iterations = 200 */
+		while(iterations < 200 && z.getAbs2() <= 200) {
+			z.mul(z);
+			z.add(c);
+			iterations++;
+		}
+		return iterations == 200;
+
+	}
+
+	private int resCalc(int res) {
+		switch(res) {
+
+		/* i sjunkande ordning; high - very low. Default är very high = 1 */
+		case 1024:
+			return 3;
+
+		case 512:
+			return 5;
+
+		case 256:
+			return 7;
+
+		case 128:
+			return 9;
+
+		default:
+			return 1;
 		}
 	}
-	return pixelArr;
-}
+
+
 }
