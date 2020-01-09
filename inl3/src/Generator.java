@@ -1,12 +1,14 @@
 import java.awt.Color;
 
+import org.w3c.dom.css.RGBColor;
+
 public class Generator {
-	Color[][] neuances = new Color[255][5];
+	Color[] neuances = new Color[255];
 	Color currentCol;
-
+	
 	public Generator() {
-
-
+		
+		
 
 
 
@@ -17,7 +19,7 @@ public class Generator {
 		
 		//denna variabel utnyttjas för att få fram rätt förhållande i matriserna beroende på upplösning
 		int resolution = resCalc(gui.getResolution());
-
+		
 		
 		
 		
@@ -32,7 +34,18 @@ public class Generator {
 
 
 
+
 		gui.disableInput();
+		
+		boolean colored = false;
+		switch(gui.getMode()) {
+		case MandelbrotGUI.MODE_BW:
+			colored = false;
+			break;
+		case MandelbrotGUI.MODE_COLOR:
+			colored = true;
+			break;
+		}
 
 		Complex[][] complex = mesh(gui.getMinimumReal(), gui.getMaximumReal(), gui.getMinimumImag(),
 				gui.getMaximumImag(), width, height);

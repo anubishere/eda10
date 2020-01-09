@@ -20,7 +20,7 @@ public class Life {
 			for(int cols = 0; cols < board.getCols(); cols++)
 				
 				
-			/* om den är vid liv */
+			/* Sektionen beskriver om cellen är vid liv och kollar sedan reglerna för födelse/död */
 			if(board.get(rows, cols)) {
 				
 				if(amountOfNeighbours(rows, cols) >=4 || amountOfNeighbours(rows, cols) <= 1) {
@@ -49,7 +49,7 @@ public class Life {
 		}
 			
 		} 
-
+/* skifta mellan död ochg levande */
 	public void flip(int row, int col) {
 		if (board.get(row, col) == true) {
 			board.put(row, col, false);

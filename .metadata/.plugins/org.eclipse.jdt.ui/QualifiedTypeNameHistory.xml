@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="Card"/>
     <fullyQualifiedTypeName name="MandelbrotGUI"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="org.w3c.dom.css.RGBColor"/>
 </qualifiedTypeNameHistroy>

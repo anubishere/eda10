@@ -10,10 +10,10 @@ double x = 1;
 n = scan.nextInt();
 for(int i = 0; i <= n; i++) {
 	x = x * n;
-	int medelValue = x / (double n);
-	
+	double medelValue = x / (double) n;
+	System.out.println(medelValue);
 }
-System.out.println(medelValue);
+
 	}
 
 }

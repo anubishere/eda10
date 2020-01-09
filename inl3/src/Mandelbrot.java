@@ -15,9 +15,13 @@ public class Mandelbrot {
 			switch(gui.getCommand()) {
 			
 			case MandelbrotGUI.RENDER:
-				pictureIsRendered = true;
 				g.render(gui);
-				
+				pictureIsRendered = true;
+				if(gui.getMode() == gui.MODE_BW) {
+					System.out.println("Renderar svart & vitt");
+				} else {
+					System.out.println("Renderar i färg");
+				}
 			
 			break;
 			
@@ -39,6 +43,7 @@ public class Mandelbrot {
 				
 				
 			}
+			
 			System.out.println(pictureIsRendered);
 			
 		}
